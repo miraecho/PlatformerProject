@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+    public Image healthImage;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -52,6 +54,8 @@ public class Player : MonoBehaviour
             }
         }
         setAnimation(moveInput);
+
+        healthImage.fillAmount = health / 100f;
     }
 
     private void FixedUpdate()
