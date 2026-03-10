@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
@@ -25,6 +24,6 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenuButton() 
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 }
