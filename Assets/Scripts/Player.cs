@@ -112,6 +112,10 @@ public class Player : MonoBehaviour
                 Die();
             }
         }
+        else if (collision.gameObject.tag == "Bounce Pad")
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 3);
+        }
     }
 
     private IEnumerator BlinkRed() 
