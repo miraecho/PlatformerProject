@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Coin Text
   - Bounce Pad
+  - Green Apple
   layers:
   - Default
   - TransparentFX

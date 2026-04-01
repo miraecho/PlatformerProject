@@ -116,6 +116,17 @@ public class Player : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 2);
         }
+
+        else if (collision.gameObject.tag == "Green Apple") 
+        {
+            health += 15;
+
+            if (health > 100) 
+            {
+                health = 100;
+            }
+            Destroy(collision.gameObject);
+        }
     }
 
     private IEnumerator BlinkRed() 
