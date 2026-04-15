@@ -29,6 +29,13 @@ public class Player : MonoBehaviour
 
     public int extraJumpValue = 1;
     private int extraJumps;
+
+    public float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
+
+    public float jumpBufferTime = 0.15f;
+    private float jumpBufferCounter;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,17 +53,33 @@ public class Player : MonoBehaviour
 
         if (isGrounded) 
         {
+            coyoteTimeCounter = coyoteTime;
             extraJumps = extraJumpValue;
+        }
+        else 
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isGrounded) 
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else 
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        if (jumpBufferCounter > 0f)
+        {
+            if (coyoteTimeCounter > 0f)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 PlaySFX(jumpClip);
+                coyoteTimeCounter = 0f;
+                jumpBufferCounter = 0f;
             }
-            else if (extraJumps > 0) 
+            else if (extraJumps > 0)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 extraJumps--;
