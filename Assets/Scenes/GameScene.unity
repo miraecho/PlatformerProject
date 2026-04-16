@@ -3816,7 +3816,8 @@ MonoBehaviour:
   coins: 0
   health: 100
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 9
+  jumpContinuousForce: 0.4
   groundCheck: {fileID: 1121460418}
   groundCheckRadius: 0.2
   groundLayer:
@@ -3900,7 +3901,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!82 &1469175276
 AudioSource:
   m_ObjectHideFlags: 0

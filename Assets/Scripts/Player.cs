@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     public int coins;
     public int health = 100;
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 8f;
+    public float jumpContinuousForce = 0.6f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
@@ -86,6 +87,12 @@ public class Player : MonoBehaviour
                 PlaySFX(jumpClip);
             }
         }
+
+        if (Input.GetKey(KeyCode.Space) && rb.linearVelocityY > 0) 
+        {
+            rb.AddForceY(jumpContinuousForce);
+        }
+            
         setAnimation(moveInput);
 
         healthImage.fillAmount = health / 100f;
@@ -111,7 +118,7 @@ public class Player : MonoBehaviour
         }
         else 
         {
-            if (rb.linearVelocityY > 0) 
+            if (rb.linearVelocityY > 0f) 
             {
                 animator.Play("Player_Jump");
             }
