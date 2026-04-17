@@ -52,6 +52,18 @@ public class Player : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
+        if (rb.linearVelocityX != 0) 
+        {
+            if (rb.linearVelocityX > 0) 
+            {
+                spriteRenderer.flipX = false;
+            }
+            else 
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+
         if (isGrounded) 
         {
             coyoteTimeCounter = coyoteTime;
@@ -96,6 +108,20 @@ public class Player : MonoBehaviour
         setAnimation(moveInput);
 
         healthImage.fillAmount = health / 100f;
+
+        if (rb.linearVelocityY < 0) 
+        {
+            rb.gravityScale = 2f;
+        }
+        else 
+        {
+            rb.gravityScale = 1f;
+        }
+
+        if (transform.position.y < -10) 
+        {
+            Die();
+        }
     }
 
     private void FixedUpdate()

@@ -3697,7 +3697,7 @@ GameObject:
   - component: {fileID: 1469175274}
   - component: {fileID: 1469175273}
   - component: {fileID: 1469175276}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3816,8 +3816,8 @@ MonoBehaviour:
   coins: 0
   health: 100
   moveSpeed: 5
-  jumpForce: 9
-  jumpContinuousForce: 0.4
+  jumpForce: 7
+  jumpContinuousForce: 2
   groundCheck: {fileID: 1121460418}
   groundCheckRadius: 0.2
   groundLayer:
