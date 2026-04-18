@@ -9,6 +9,7 @@ TagManager:
   - Coin Text
   - Bounce Pad
   - Green Apple
+  - Health
   layers:
   - Default
   - TransparentFX

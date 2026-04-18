@@ -1930,6 +1930,7 @@ MonoBehaviour:
   health: 100
   moveSpeed: 5
   jumpForce: 10
+  jumpContinuousForce: 0.6
   groundCheck: {fileID: 1947608503}
   groundCheckRadius: 0.2
   groundLayer:
@@ -1939,6 +1940,8 @@ MonoBehaviour:
   jumpClip: {fileID: 8300000, guid: 5708d77107cb74dd287928a1b3c2fd33, type: 3}
   hurtClip: {fileID: 8300000, guid: 3dc7d265f9c42437492a59228fc7b6d7, type: 3}
   extraJumpValue: 0
+  coyoteTime: 0.2
+  jumpBufferTime: 0.15
 --- !u!95 &877320614
 Animator:
   serializedVersion: 7
@@ -3195,7 +3198,7 @@ GameObject:
   - component: {fileID: 1556966924}
   m_Layer: 5
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
