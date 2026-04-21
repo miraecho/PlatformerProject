@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.AddForce(new Vector2(moveInput * moveSpeed * 50, 0f), ForceMode2D.Force);
 
-        rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocity.x, -moveSpeed, -moveSpeed), rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocity.x, -moveSpeed, moveSpeed), rb.linearVelocity.y);
 
     }
 
