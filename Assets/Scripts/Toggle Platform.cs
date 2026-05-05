@@ -29,7 +29,7 @@ public class TogglePlatform : MonoBehaviour
 
     void Update()
     {
-        timer = Time.deltaTime;
+        timer -= Time.deltaTime;
         if (timer <= 0) 
         {
             isOn = !isOn;
