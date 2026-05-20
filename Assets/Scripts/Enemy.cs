@@ -91,6 +91,6 @@ public class Enemy : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, target, chargeSpeed * Time.deltaTime);
 
-        spriteRenderer.flipX = (transform.position.x - player.position.x) > 0f;
+        spriteRenderer.flipX = (transform.position.x - player.position.x) < 0f;
     }
 }
