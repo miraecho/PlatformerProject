@@ -20,6 +20,12 @@ public class Player : MonoBehaviour
     public AudioClip jumpClip;
     public AudioClip hurtClip;
 
+    [Header("Shooting")]
+    public GameObject bulletPrefab;
+    public float fireRate;
+
+    private float fireTimer;
+
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -130,6 +136,8 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+
+        HandleShooting();
     }
 
     private void FixedUpdate()
@@ -217,5 +225,33 @@ public class Player : MonoBehaviour
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.Play();
+    }
+
+    private void HandleShooting() 
+    {
+        fireTimer -= Time.deltaTime;
+
+        if (Input.GetMouseButton(0) && fireTimer <= 0) 
+        {
+            Shoot();
+            fireTimer = fireRate;
+        }
+    }
+
+    private void Shoot() 
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+
+        if (spriteRenderer.flipX) 
+        {
+            bulletScript.setDirection(Vector2.left);
+        }
+        else 
+        {
+            bulletScript.setDirection(Vector2.right);
+        }
+
     }
 }

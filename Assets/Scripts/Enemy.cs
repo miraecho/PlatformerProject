@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour
         {
             Patrol();
         }
-        
     }
 
     void Patrol() 
@@ -92,5 +91,13 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target, chargeSpeed * Time.deltaTime);
 
         spriteRenderer.flipX = (transform.position.x - player.position.x) < 0f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet") 
+        {
+            Destroy(transform.parent.gameObject);  
+        }
     }
 }
