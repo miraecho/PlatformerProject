@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public float fireRate;
 
+    [Header("Invincibility")]
+    public float iFrameDuration = 1f;
+    private bool isInvincible;
+
     private float fireTimer;
 
     private Rigidbody2D rb;
@@ -181,10 +185,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Damage") 
         {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            if (isInvincible) return;
+            
             PlaySFX(hurtClip);
             health -= 25;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             StartCoroutine(BlinkRed());
+
+            StartCoroutine(InvincibilityFrames());
 
             if (health <=  0) 
             {
@@ -210,9 +219,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator BlinkRed() 
     {
-        spriteRenderer.color = Color.red;
+        spriteRenderer.color = new Color(Color.red.r, Color.red.g, Color.red.b, spriteRenderer.color.a);
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = new Color(Color.white.r, Color.white.g, Color.white.b, spriteRenderer.color.a);
     }
 
     private void Die() 
@@ -253,5 +262,24 @@ public class Player : MonoBehaviour
             bulletScript.setDirection(Vector2.right);
         }
 
+    }
+
+    private IEnumerator InvincibilityFrames() 
+    {
+        isInvincible = true;
+
+        float elapsed = 0f;
+
+        while (elapsed < iFrameDuration) 
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.2f);
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+            yield return new WaitForSeconds(0.1f);
+
+            elapsed += 0.2f;
+        }
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+        isInvincible = false;
     }
 }
