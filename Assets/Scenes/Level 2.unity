@@ -1243,7 +1243,7 @@ Transform:
   m_GameObject: {fileID: 236297359}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.63, y: 1.40452, z: -10}
+  m_LocalPosition: {x: -13.64, y: 2.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1460,7 +1460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404644585}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1476,7 +1476,7 @@ Transform:
   m_GameObject: {fileID: 404644584}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.28, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1918,7 +1918,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.63, y: 1.40452, z: -10}
+  m_LocalPosition: {x: -13.64, y: 2.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3652,7 +3652,7 @@ Transform:
   m_GameObject: {fileID: 1350866789}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.63, y: 1.40452, z: 0}
+  m_LocalPosition: {x: -13.64, y: 2.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3810,16 +3810,18 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 8
   jumpContinuousForce: 0.6
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 404644585}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   jumpClip: {fileID: 8300000, guid: 5708d77107cb74dd287928a1b3c2fd33, type: 3}
   hurtClip: {fileID: 8300000, guid: 3dc7d265f9c42437492a59228fc7b6d7, type: 3}
   bulletPrefab: {fileID: 2754596617463129123, guid: 69d1f850a0e08144899778ef6a24c442, type: 3}
   fireRate: 0
   iFrameDuration: 1
+  wallCheckDistance: 0.5
+  wallSlideSpeed: 2
   extraJumpValue: 1
   coyoteTime: 0.2
   jumpBufferTime: 0.15
@@ -4287,11 +4289,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7337973462518896829, guid: c61a579c6ba4353449b2bec519c24801, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.411795
+      value: -16.7
       objectReference: {fileID: 0}
     - target: {fileID: 7337973462518896829, guid: c61a579c6ba4353449b2bec519c24801, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5967534
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 7337973462518896829, guid: c61a579c6ba4353449b2bec519c24801, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4331,7 +4333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7472143282512207876, guid: c61a579c6ba4353449b2bec519c24801, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

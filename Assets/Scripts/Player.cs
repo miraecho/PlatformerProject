@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
     public float iFrameDuration = 1f;
     private bool isInvincible;
 
+    [Header("Wall Sliding")]
+    public float wallCheckDistance = 0.46f;
+    public float wallSlideSpeed = 2f;
+
+    private bool isTouchingWall;
+    private bool isWallSliding;
+
     private float fireTimer;
 
     private Rigidbody2D rb;
@@ -142,11 +149,14 @@ public class Player : MonoBehaviour
         }
 
         HandleShooting();
+        HandleWallSlide(moveInput);
     }
 
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        isTouchingWall = Physics2D.Raycast(transform.position, spriteRenderer.flipX ? Vector2.left : Vector2.right, wallCheckDistance, groundLayer);
 
         float moveInput = Input.GetAxis("Horizontal");
         rb.AddForce(new Vector2(moveInput * moveSpeed * 50, 0f), ForceMode2D.Force);
@@ -171,6 +181,10 @@ public class Player : MonoBehaviour
         }
         else 
         {
+            if (isWallSliding)
+            {
+                animator.Play("Player_WallSlideLeft");
+            }
             if (rb.linearVelocityY > 0f) 
             {
                 animator.Play("Player_Jump");
@@ -281,5 +295,18 @@ public class Player : MonoBehaviour
         }
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
         isInvincible = false;
+    }
+
+    private void HandleWallSlide(float moveInput) 
+    {
+        if (isTouchingWall && !isGrounded && moveInput != 0 && rb.linearVelocityY > 0) 
+        {
+            isWallSliding = true;
+            rb.linearVelocityY = -wallSlideSpeed;
+        }
+        else 
+        {
+            isWallSliding = false;
+        }
     }
 }
