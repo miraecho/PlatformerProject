@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private bool isInvincible;
 
     [Header("Wall Sliding")]
-    public float wallCheckDistance = 0.46f;
+    public float wallCheckDistance = 1.5f;
     public float wallSlideSpeed = 2f;
 
     private bool isTouchingWall;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     {
         float moveInput = Input.GetAxis("Horizontal");
 
-        if (rb.linearVelocityX != 0) 
+        if (rb.linearVelocityX != 0 && !isTouchingWall) 
         {
             if (rb.linearVelocityX > 0) 
             {
@@ -110,6 +110,16 @@ public class Player : MonoBehaviour
 
         if (jumpBufferCounter > 0f)
         {
+            if (isWallSliding) 
+            {
+                float direction = spriteRenderer.flipX ? 1 : -1;
+
+                rb.linearVelocity = new Vector2(direction * 8f, jumpForce);
+
+                spriteRenderer.flipX = !spriteRenderer.flipX;
+                jumpBufferCounter = 0f;
+                PlaySFX(jumpClip);
+            }
             if (coyoteTimeCounter > 0f)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -149,7 +159,7 @@ public class Player : MonoBehaviour
         }
 
         HandleShooting();
-        HandleWallSlide(moveInput);
+        HandleWallSlide();
     }
 
     private void FixedUpdate()
@@ -183,7 +193,15 @@ public class Player : MonoBehaviour
         {
             if (isWallSliding)
             {
-                animator.Play("Player_WallSlideLeft");
+                if (spriteRenderer.flipX) 
+                {
+                    animator.Play("Player_WallSlideRight");
+                }
+                else 
+                {
+                    animator.Play("Player_WallSlideLeft");
+                }
+                
             }
             if (rb.linearVelocityY > 0f) 
             {
@@ -297,12 +315,12 @@ public class Player : MonoBehaviour
         isInvincible = false;
     }
 
-    private void HandleWallSlide(float moveInput) 
+    private void HandleWallSlide() 
     {
-        if (isTouchingWall && !isGrounded && moveInput != 0 && rb.linearVelocityY > 0) 
+        if (isTouchingWall && !isGrounded && rb.linearVelocityY < 0.15f) 
         {
             isWallSliding = true;
-            rb.linearVelocityY = -wallSlideSpeed;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
         }
         else 
         {
