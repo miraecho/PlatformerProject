@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
                 }
                 
             }
-            if (rb.linearVelocityY > 0f) 
+            else if (rb.linearVelocityY > 0f) 
             {
                 animator.Play("Player_Jump");
             }
