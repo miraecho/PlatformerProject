@@ -8,9 +8,12 @@ public class Coin : MonoBehaviour
     public AudioClip coinClip;
     private TextMeshProUGUI coinText;
 
+    private Respawnable respawnable;
+
     private void Start()
     {
         coinText = GameObject.FindWithTag("Coin Text").GetComponent<TextMeshProUGUI>();
+        respawnable = GetComponent<Respawnable>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,7 +23,7 @@ public class Coin : MonoBehaviour
             player.coins += 1;
             player.PlaySFX(coinClip, 0.4f);
             coinText.text = player.coins.ToString();
-            Destroy(gameObject);
+            respawnable.Hide();
         }
     }
 }

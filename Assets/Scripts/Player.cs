@@ -193,14 +193,7 @@ public class Player : MonoBehaviour
         {
             if (isWallSliding)
             {
-                if (spriteRenderer.flipX) 
-                {
-                    animator.Play("Player_WallSlideRight");
-                }
-                else 
-                {
-                    animator.Play("Player_WallSlideLeft");
-                }
+                animator.Play("Player_WallSlideRight");
                 
             }
             else if (rb.linearVelocityY > 0f) 
@@ -245,7 +238,7 @@ public class Player : MonoBehaviour
             {
                 health = 100;
             }
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Respawnable>().Hide();
         }
     }
 
