@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8492441011794667260}
   - component: {fileID: 3214602474582100472}
   - component: {fileID: 6323061429886093674}
+  - component: {fileID: -8521825878921206521}
   m_Layer: 0
   m_Name: Coin (Gold)
   m_TagString: Untagged
@@ -190,3 +191,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatUpandDown
   amplitude: 0.5
   frequency: 1
+--- !u!114 &-8521825878921206521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472143282512207876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a054e23c7c6e4874f81dd0aeaa1dd551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Respawnable
+  timeBeforeRespawn: 3

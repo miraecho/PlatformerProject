@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
         {
             if (isWallSliding)
             {
-                animator.Play("Player_WallSlideRight");
+                animator.Play("Player_WallSlideLeft");
                 
             }
             else if (rb.linearVelocityY > 0f) 
