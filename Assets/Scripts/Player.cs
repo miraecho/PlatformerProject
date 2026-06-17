@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
 
         else if (collision.gameObject.tag == "Green Apple") 
         {
-            health += 15;
+            health += 3;
 
             if (health > 100) 
             {
