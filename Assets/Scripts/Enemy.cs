@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
                 i = 0;
             }
         }
-
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
         Debug.Log(transform.position);
         spriteRenderer.flipX = (transform.position.x - points[i].position.x) < 0f;
