@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 
     void Patrol() 
     {
-        if (Vector2.Distance(transform.position, points[i].position) < 0.25f)
+        if (Vector2.Distance(transform.position, points[i].position) <= 0.3f)
         {
             i++;
             if (i == points.Length)
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, target, chargeSpeed * Time.deltaTime);
 
-        spriteRenderer.flipX = (transform.position.x - player.position.x) < 0f;
+        spriteRenderer.flipX = (transform.position.x - player.position.x) <= 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
