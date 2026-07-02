@@ -24,6 +24,7 @@ public class Coin : MonoBehaviour
             player.coins += coinsToGive;
             player.PlaySFX(coinClip, 0.4f);
             coinText.text = player.coins.ToString();
+            Destroy(gameObject);
             respawnable.Hide();
         }
     }

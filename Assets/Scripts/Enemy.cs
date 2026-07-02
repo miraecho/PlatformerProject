@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour
     //Charge
     public bool canCharge = false;
     public float chargeSpeed = 5f;
-    public float sightDistance = 3f;
-    public float loseDistance = 5f;
+    public float sightDistance = 4f;
+    public float loseDistance = 6f;
     public LayerMask playerLayer;
 
     private int i;
