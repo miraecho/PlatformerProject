@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public float fireRate;
 
+    private float fireTimer;
+
     [Header("Invincibility")]
     public float iFrameDuration = 1f;
     private bool isInvincible;
@@ -34,8 +36,6 @@ public class Player : MonoBehaviour
 
     private bool isTouchingWall;
     private bool isWallSliding;
-
-    private float fireTimer;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -208,8 +208,19 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.gameObject.tag == "Damage") 
         {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy != null) 
+            {
+                if (enemy.transform.position.y + 0.3f < transform.position.y) 
+                {
+                    Destroy(enemy.gameObject);
+                    return;
+                }
+            }
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             if (isInvincible) return;
